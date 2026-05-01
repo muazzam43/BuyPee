@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "884984493905",
+    "project_id": "buypee-d3468",
+    "storage_bucket": "buypee-d3468.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884984493905:android:c30cf21a93c31e045d8570",
+        "android_client_info": {
+          "package_name": "com.buypee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgffWUnB2f8bdF4RKoqZSW0vaKbaw5r80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

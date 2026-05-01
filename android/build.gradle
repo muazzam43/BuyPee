@@ -1,21 +1,55 @@
+
+
 buildscript {
     ext {
         buildToolsVersion = "35.0.0"
         minSdkVersion = 24
         compileSdkVersion = 35
         targetSdkVersion = 35
-        ndkVersion = "27.1.12297006"
-        kotlinVersion = "2.1.20"
+        ndkVersion = "26.1.10909125"
+        kotlinVersion = "1.9.10"
+        cmakeVersion = "3.22.1"
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle")
+        // Android Gradle plugin
+        classpath("com.android.tools.build:gradle:8.3.2")
+
+        // React Native Gradle plugin
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+
+        // Kotlin Gradle plugin
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10")
+
+        // Firebase Google Services plugin
+        classpath("com.google.gms:google-services:4.4.3")
     }
 }
 
+// For repositories shared across all modules
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// ✅ Force all subprojects (app + libraries) to use JVM 17
+subprojects {
+    afterEvaluate { project ->
+        if (project.plugins.hasPlugin("org.jetbrains.kotlin.android") ||
+            project.plugins.hasPlugin("kotlin-android")) {
+            project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+                kotlinOptions {
+                    jvmTarget = "17"
+                }
+            }
+        }
+    }
+}
+
+// Required for React Native
 apply plugin: "com.facebook.react.rootproject"
